@@ -39,18 +39,55 @@ class Matranesia extends StatelessWidget {
           ),
         ),
       ),
-      body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: MediaQuery.of(context).size.width > 600 ? 3 : 2,
-          childAspectRatio: 3 / 4,
-        ),
-        itemCount: foods.length,
-        itemBuilder: (context, index) {
-          return FoodCard(
-            imagePath: foods[index].imagePath,
-            name: foods[index].name,
-            origin: foods[index].origin,
-          );
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth < 600) {
+            return GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 3 / 4,
+              ),
+              itemCount: foods.length,
+              itemBuilder: (context, index) {
+                return FoodCard(
+                  imagePath: foods[index].imagePath,
+                  name: foods[index].name,
+                  origin: foods[index].origin,
+                );
+              },
+            );
+          } else if (constraints.maxWidth >= 300 &&
+              constraints.maxWidth < 1200) {
+            return GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                childAspectRatio: 3 / 4,
+              ),
+              itemCount: foods.length,
+              itemBuilder: (context, index) {
+                return FoodCard(
+                  imagePath: foods[index].imagePath,
+                  name: foods[index].name,
+                  origin: foods[index].origin,
+                );
+              },
+            );
+          } else {
+            return GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 6,
+                childAspectRatio: 3 / 4,
+              ),
+              itemCount: foods.length,
+              itemBuilder: (context, index) {
+                return FoodCard(
+                  imagePath: foods[index].imagePath,
+                  name: foods[index].name,
+                  origin: foods[index].origin,
+                );
+              },
+            );
+          }
         },
       ),
     );
@@ -105,6 +142,7 @@ class FoodCard extends StatelessWidget {
               child: Text(
                 origin,
                 textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.w300,

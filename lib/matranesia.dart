@@ -51,7 +51,7 @@ class Matranesia extends StatelessWidget {
           ),
         ),
       ),
-<<<<<<< Updated upstream
+
       body: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: MediaQuery.of(context).size.width > 600 ? 3 : 2,
@@ -64,17 +64,20 @@ class Matranesia extends StatelessWidget {
             name: foods[index].name,
             origin: foods[index].origin,
           );
-=======
+
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth < 600) {
             return GridView.builder(
+
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+
                 crossAxisCount: 2,
                 childAspectRatio: 3 / 4,
               ),
               itemCount: foods.length,
               itemBuilder: (context, index) {
+
                 return GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -89,18 +92,21 @@ class Matranesia extends StatelessWidget {
                     name: foods[index].name,
                     origin: foods[index].origin,
                   ),
+
                 );
               },
             );
           } else if (constraints.maxWidth >= 300 &&
               constraints.maxWidth < 1200) {
             return GridView.builder(
+
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+
                 crossAxisCount: 3,
                 childAspectRatio: 3 / 4,
               ),
               itemCount: foods.length,
-              itemBuilder: (context, index) {
+
                 return GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -121,11 +127,13 @@ class Matranesia extends StatelessWidget {
           } else {
             return GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+
                 crossAxisCount: 6,
                 childAspectRatio: 3 / 4,
               ),
               itemCount: foods.length,
               itemBuilder: (context, index) {
+
                 return GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -144,7 +152,6 @@ class Matranesia extends StatelessWidget {
               },
             );
           }
->>>>>>> Stashed changes
         },
       ),
     );
@@ -199,6 +206,7 @@ class FoodCard extends StatelessWidget {
               child: Text(
                 origin,
                 textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.w300,
